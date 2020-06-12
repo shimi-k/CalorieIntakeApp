@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "488679639494",
+    "firebase_url": "https://calorieintakeapp.firebaseio.com",
+    "project_id": "calorieintakeapp",
+    "storage_bucket": "calorieintakeapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488679639494:android:7e2a429b8f22fd87bb0ac7",
+        "android_client_info": {
+          "package_name": "com.example.calorieintakeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488679639494-2s5m8tuo5e8krcf6nk57m9ga6fqnbb23.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAikwbbvPROkCoo9nTbKd_3KjymxZRuGWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488679639494-2s5m8tuo5e8krcf6nk57m9ga6fqnbb23.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
