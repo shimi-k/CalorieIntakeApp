@@ -55,8 +55,4 @@ class MainActivity : AppCompatActivity() {
         setUpSearchButtonUI()
 
     }
-
-    fun test(): String {
-        return "hoge"
-    }
 }
