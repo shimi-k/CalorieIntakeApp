@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CalorieIntakeApp</string>
+    <string name = "firstFragment">firstFragment</string>
+    <string name = "secondFragment">secondFragment</string>
+    <string name = "title">消費カロリー検索</string>
+    <string name = "search">食べた物を入力してください</string>
+    <string name = "serchButton">検索</string>
 </resources>
