@@ -1,10 +1,14 @@
 package com.example.calorieintakeapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -17,34 +21,44 @@ class MainFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_main, null)
     }
 
-    val db = FirebaseFirestore.getInstance()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupSearchButtonUI(view)
 
-//    fun setUpSearchButtonUI() {
-//        findViewById<Button>(R.id.searchButton).setOnClickListener {
-//            getFoods(findViewById<EditText>(R.id.text).text.toString())
+
+    }
+
+//    private fun setUpFlagmentSubFirst(view: View){
+//        view.findViewById<Button>(R.id.firstButton).setOnClickListener{
+//            replace
 //        }
 //    }
 
-    fun getFoods(name: String) {
+    val db = FirebaseFirestore.getInstance()
+
+    private fun setupSearchButtonUI(view: View) {
+        view.findViewById<Button>(R.id.searchButton).setOnClickListener {
+            getFoods(view.findViewById<EditText>(R.id.text).text.toString())
+        }
+    }
+
+    private fun getFoods(name: String) {
         db.collection("foods")
             .whereEqualTo("name", name)
             .get()
-            .addOnSuccessListener { documents ->
-                when (documents.size()) {
+            .addOnSuccessListener {
+                when (it.count()) {
                     0 -> {
-                        // Toast.makeText(this, "料理名が存在しません", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "料理名が存在しません", Toast.LENGTH_SHORT).show()
                     }
-
                     1 -> {
-//                        documents.forEach {
-//                            val intent = Intent(this, SubActivity::class.java).apply {
-//                                putExtra("EXTRA_CALORIE", it.getLong("calorie").toString())
-//                            }
-//                            startActivityForResult(intent,1)
-//                        }
+                        val intent = Intent(context, SubActivity::class.java).apply {
+                            putExtra("EXTRA_CALORIE", it.first().getLong("calorie").toString())
+                        }
+                        startActivityForResult(intent, 1)
                     }
                     else -> {
-                        // Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -56,3 +70,5 @@ class MainFragment : Fragment() {
 
 
 }
+
+
