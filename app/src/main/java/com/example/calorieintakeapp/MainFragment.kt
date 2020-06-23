@@ -13,6 +13,9 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MainFragment : Fragment() {
+
+    val db = FirebaseFirestore.getInstance()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,21 +27,26 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupSearchButtonUI(view)
-
-
+        setupFragmentFirstButton(view)
     }
 
-//    private fun setUpFlagmentSubFirst(view: View){
+    //    private fun setUpFlagmentSubFirst(view: View){
 //        view.findViewById<Button>(R.id.firstButton).setOnClickListener{
 //            replace
 //        }
 //    }
-
-    val db = FirebaseFirestore.getInstance()
-
     private fun setupSearchButtonUI(view: View) {
         view.findViewById<Button>(R.id.searchButton).setOnClickListener {
             getFoods(view.findViewById<EditText>(R.id.text).text.toString())
+        }
+    }
+
+    private fun setupFragmentFirstButton(view: View) {
+        view.findViewById<Button>(R.id.firstButton).setOnClickListener {
+            requireFragmentManager().beginTransaction()
+                .replace(android.R.id.content, FragmentSubFirst())
+                .addToBackStack(FragmentSubFirst::class.java.simpleName)
+                .commitAllowingStateLoss()
         }
     }
 
@@ -67,8 +75,4 @@ class MainFragment : Fragment() {
                 // Toast.makeText(this, "接続失敗", Toast.LENGTH_SHORT).show()
             }
     }
-
-
 }
-
-
